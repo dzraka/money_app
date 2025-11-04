@@ -27,6 +27,7 @@ class TransactionDao {
     );
     return(incomeresult.first['total_income'] as num?)?.toDouble() ?? 0.0;
   }
+
   Future<double> getExpense() async {
     final db = await dbHelper.database;
     final expenseresult = await db.rawQuery(
@@ -34,5 +35,30 @@ class TransactionDao {
       ['expense']
     );
     return(expenseresult.first['total_expense'] as num?)?.toDouble() ?? 0.0;
+  }
+
+  Future<double> getBalance() async {
+    final income = await getIncome();
+    final expense = await getExpense();
+    return income - expense;
+  }
+
+  Future<int> updateTransaction(int id, Transaction transaction) async {
+    final db = await dbHelper.database;
+    return await db.update(
+      'transactions',
+      transaction.toMap(),
+      where: 'id = ?',
+      whereArgs: [id], 
+    );
+  }
+
+  Future<int> deleteTransaction(int id) async {
+    final db = await dbHelper.database;
+    return await db.delete(
+      'transactions',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 }
