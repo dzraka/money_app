@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:money_app/data/db/db_helper.dart';
 
-void main() {
+void main () async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DbHelper().database;
   runApp(const MyApp());
 }
 
