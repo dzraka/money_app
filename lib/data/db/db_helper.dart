@@ -27,7 +27,7 @@ class DbHelper {
     await db.execute(''' 
     CREATE TABLE transactions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      type TEXT CHECK(type  IN ('income', expense)) NOT NULL,
+      type TEXT CHECK(type  IN ('income', 'expense')) NOT NULL,
       category TEXT NOT NULL,
       description TEXT NOT NULL,
       amount REAL TEXT NOT NULL,

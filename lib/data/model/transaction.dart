@@ -59,7 +59,8 @@ class Transaction {
 
   String toJson() => json.encode(toMap());
 
-  factory Transaction.fromJson(String source) => Transaction.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Transaction.fromJson(String source) =>
+      Transaction.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -69,23 +70,22 @@ class Transaction {
   @override
   bool operator ==(covariant Transaction other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.type == type &&
-      other.category == category &&
-      other.description == description &&
-      other.amount == amount &&
-      other.date == date;
+
+    return other.id == id &&
+        other.type == type &&
+        other.category == category &&
+        other.description == description &&
+        other.amount == amount &&
+        other.date == date;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      type.hashCode ^
-      category.hashCode ^
-      description.hashCode ^
-      amount.hashCode ^
-      date.hashCode;
+        type.hashCode ^
+        category.hashCode ^
+        description.hashCode ^
+        amount.hashCode ^
+        date.hashCode;
   }
 }

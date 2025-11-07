@@ -1,11 +1,11 @@
-import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
+import 'dart:developer';
 
 import 'package:money_app/data/db/db_helper.dart';
 import 'package:money_app/data/model/transaction.dart';
 
 class TransactionDao {
   final dbHelper = DbHelper();
-  Future<int> insertTransaction( Transaction transaction) async {
+  Future<int> insertTransaction(Transaction transaction) async {
     final db = await dbHelper.database;
     return await db.insert('transactions', transaction.toMap());
   }
@@ -23,18 +23,18 @@ class TransactionDao {
     final db = await dbHelper.database;
     final incomeresult = await db.rawQuery(
       'SELECT SUM(amount) as total_income FROM transactions WHERE TYPE = ?',
-      ['income']
+      ['income'],
     );
-    return(incomeresult.first['total_income'] as num?)?.toDouble() ?? 0.0;
+    return (incomeresult.first['total_income'] as num?)?.toDouble() ?? 0.0;
   }
 
   Future<double> getExpense() async {
     final db = await dbHelper.database;
     final expenseresult = await db.rawQuery(
       'SELECT SUM(amount) as total_expense FROM transactions WHERE TYPE = ?',
-      ['expense']
+      ['expense'],
     );
-    return(expenseresult.first['total_expense'] as num?)?.toDouble() ?? 0.0;
+    return (expenseresult.first['total_expense'] as num?)?.toDouble() ?? 0.0;
   }
 
   Future<double> getBalance() async {
@@ -49,16 +49,12 @@ class TransactionDao {
       'transactions',
       transaction.toMap(),
       where: 'id = ?',
-      whereArgs: [id], 
+      whereArgs: [id],
     );
   }
 
   Future<int> deleteTransaction(int id) async {
     final db = await dbHelper.database;
-    return await db.delete(
-      'transactions',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    return await db.delete('transactions', where: 'id = ?', whereArgs: [id]);
   }
 }

@@ -75,10 +75,10 @@ class _InsertPageState extends State<InsertPage> {
               DropdownButtonFormField<String>(
                 value: _type,
                 items: const [
-                  DropdownMenuItem(value: 'Income', child: Text('Income')),
-                  DropdownMenuItem(value: 'Expense', child: Text('Expense')),
+                  DropdownMenuItem(value: 'income', child: Text('Income')),
+                  DropdownMenuItem(value: 'expense', child: Text('Expense')),
                 ],
-                onChanged: (v) => setState(() => v ?? 'income'),
+                onChanged: (v) => setState(() => _type = v ?? 'income'),
                 decoration: const InputDecoration(labelText: 'tipe'),
               ),
 
