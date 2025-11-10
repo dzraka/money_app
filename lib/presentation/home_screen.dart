@@ -79,107 +79,120 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(18.0),
           child: Column(
             children: [
-              Text(
-                "Balance",
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Balance",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    SizedBox(height: 4),
+
+                    Text(
+                      _balance == null
+                          ? "Rp0.0"
+                          : "Rp${_balance!.toStringAsFixed(2)}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 16.0),
+                            padding: EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "Income:",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+
+                                SizedBox(height: 4),
+
+                                Text(
+                                  _income == null
+                                      ? "Rp0.0"
+                                      : "Rp${_income!.toStringAsFixed(2)}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(width: 16.0),
+
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 16.0),
+                            padding: EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "Expense:",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+
+                                SizedBox(height: 4),
+
+                                Text(
+                                  _expense == null
+                                      ? "Rp0.0"
+                                      : "Rp${_expense!.toStringAsFixed(2)}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
 
-              SizedBox(height: 4),
-
-              Text(
-                _balance == null
-                    ? "Rp0.0"
-                    : "Rp${_balance!.toStringAsFixed(2)}",
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 16.0),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Income:",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-
-                          SizedBox(height: 4),
-
-                          Text(
-                            _income == null
-                                ? "Rp0.0"
-                                : "Rp${_income!.toStringAsFixed(2)}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(width: 16.0),
-
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 16.0),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Expense:",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-
-                          SizedBox(height: 4),
-
-                          Text(
-                            _expense == null
-                                ? "Rp0.0"
-                                : "Rp${_expense!.toStringAsFixed(2)}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(height: 24),
 
               Text("Transactions will be listed here."),
