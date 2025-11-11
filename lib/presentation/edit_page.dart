@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-// import 'package:money_app/data/db/transaction_dao.dart';
 import 'package:money_app/data/model/transaction.dart';
 import 'package:money_app/data/repository/money_repository.dart';
 
-class InsertPage extends StatefulWidget {
-  const InsertPage({super.key});
+class EditPage extends StatefulWidget {
+  final Transaction ts;
+  const EditPage({super.key, required this.ts});
 
   @override
-  State<InsertPage> createState() => _InsertPageState();
+  State<EditPage> createState() => _EditPageState();
 }
 
-class _InsertPageState extends State<InsertPage> {
+class _EditPageState extends State<EditPage> {
   List<String> categories = [
     'Gaji',
     'Makanan',
@@ -29,6 +29,16 @@ class _InsertPageState extends State<InsertPage> {
   String _type = 'income';
   DateTime _selectedDate = DateTime.now();
   final _repo = MoneyRepository();
+
+  @override
+  void initState() {
+    super.initState();
+    _type = widget.ts.type;
+    _categoryCtr.text = widget.ts.category;
+    _amountCtr.text = widget.ts.amount.toString();
+    _descCtr.text = widget.ts.description;
+    _selectedDate = DateTime.parse(widget.ts.date);
+  }
 
   @override
   void dispose() {
@@ -60,13 +70,13 @@ class _InsertPageState extends State<InsertPage> {
       date: _selectedDate.toIso8601String(),
     );
 
-    await _repo.insertTransaction(tx);
+    await _repo.updateTransaction(widget.ts.id!, tx);
     if (mounted) Navigator.of(context).pop(true);
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tambah Transaki')),
+      appBar: AppBar(title: const Text('Edit Transaki')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -86,6 +96,7 @@ class _InsertPageState extends State<InsertPage> {
               const SizedBox(height: 12),
 
               DropdownButtonFormField<String>(
+                value: _categoryCtr.text,
                 decoration: const InputDecoration(labelText: 'Kategori'),
                 items: categories
                     .map(

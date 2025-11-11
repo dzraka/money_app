@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:money_app/data/repository/money_repository.dart';
 import 'package:money_app/data/model/transaction.dart';
+import 'package:money_app/presentation/detail_page.dart';
 import 'package:money_app/presentation/insert_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -203,34 +204,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: _transactions.length,
                   itemBuilder: (context, index) {
                     final tx = _transactions[index];
-                    return ListTile(
-                      shape: Border(
-                        bottom: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      style: ListTileStyle.list,
-                      title: Text(tx.description),
-                      subtitle: Text(
-                        tx.type == 'income' ? 'income' : 'expense',
-                        style: TextStyle(
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(ts: tx),
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        shape: Border(
+                          bottom: BorderSide(color: Colors.grey.shade300),
+                        ),
+                        style: ListTileStyle.list,
+                        title: Text(tx.description),
+                        subtitle: Text(
+                          tx.type == 'income' ? 'income' : 'expense',
+                          style: TextStyle(
+                            color: tx.type == 'income'
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                        ),
+                        leading: Icon(
+                          tx.type == 'income'
+                              ? Icons.arrow_circle_up
+                              : Icons.arrow_circle_down,
                           color: tx.type == 'income'
                               ? Colors.green
                               : Colors.red,
                         ),
-                      ),
-                      leading: Icon(
-                        tx.type == 'income'
-                            ? Icons.arrow_circle_up
-                            : Icons.arrow_circle_down,
-                        color: tx.type == 'income' ? Colors.green : Colors.red,
-                      ),
 
-                      trailing: Text(
-                        "Rp${tx.amount.toStringAsFixed(2)}",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: tx.type == 'income'
-                              ? Colors.green
-                              : Colors.red,
+                        trailing: Text(
+                          "Rp${tx.amount.toStringAsFixed(2)}",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: tx.type == 'income'
+                                ? Colors.green
+                                : Colors.red,
+                          ),
                         ),
                       ),
                     );
