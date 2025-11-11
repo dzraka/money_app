@@ -30,7 +30,7 @@ class DbHelper {
       type TEXT CHECK(type IN ('income', 'expense')) NOT NULL,
       category TEXT NOT NULL,
       description TEXT NOT NULL,
-      amount REAL TEXT NOT NULL,
+      amount REAL NOT NULL,
       date TEXT NOT NULL
     )
     ''');
