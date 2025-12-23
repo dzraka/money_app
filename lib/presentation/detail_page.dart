@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:money_app/data/model/transaction.dart';
-import 'package:money_app/data/repository/money_repository.dart';
+import 'package:money_app/data/local/model/transaction.dart';
+import 'package:money_app/data/local/repository/money_repository.dart';
 import 'package:money_app/presentation/edit_page.dart';
 import 'package:money_app/presentation/home_screen.dart';
 

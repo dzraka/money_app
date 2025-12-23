@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:money_app/data/repository/money_repository.dart';
-import 'package:money_app/data/model/transaction.dart';
+import 'package:money_app/data/local/repository/money_repository.dart';
+import 'package:money_app/data/local/model/transaction.dart';
 import 'package:money_app/presentation/detail_page.dart';
 import 'package:money_app/presentation/insert_page.dart';
 
@@ -73,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(

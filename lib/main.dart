@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_app/data/db/db_helper.dart';
+import 'package:money_app/data/local/db/db_helper.dart';
 import 'package:money_app/presentation/home_screen.dart';
 
 void main() async {

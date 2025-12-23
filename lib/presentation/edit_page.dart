@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:money_app/data/model/transaction.dart';
-import 'package:money_app/data/repository/money_repository.dart';
+import 'package:money_app/data/local/model/transaction.dart';
+import 'package:money_app/data/local/repository/money_repository.dart';
 
 class EditPage extends StatefulWidget {
   final Transaction ts;
@@ -74,6 +74,7 @@ class _EditPageState extends State<EditPage> {
     if (mounted) Navigator.of(context).pop(true);
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Edit Transaki')),
@@ -84,7 +85,7 @@ class _EditPageState extends State<EditPage> {
           child: ListView(
             children: [
               DropdownButtonFormField<String>(
-                value: _type,
+                initialValue: _type,
                 items: const [
                   DropdownMenuItem(value: 'income', child: Text('Income')),
                   DropdownMenuItem(value: 'expense', child: Text('Expense')),
@@ -96,7 +97,7 @@ class _EditPageState extends State<EditPage> {
               const SizedBox(height: 12),
 
               DropdownButtonFormField<String>(
-                value: _categoryCtr.text,
+                initialValue: _categoryCtr.text,
                 decoration: const InputDecoration(labelText: 'Kategori'),
                 items: categories
                     .map(
@@ -127,8 +128,9 @@ class _EditPageState extends State<EditPage> {
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Masukkan nominal';
                   final n = double.tryParse(v);
-                  if (n == null || v.trim().isEmpty)
+                  if (n == null || v.trim().isEmpty) {
                     return 'Masukkan angka yang valid';
+                  }
                   if (n <= 0) return 'Nominal harus lebih besar dari 0';
                   return null;
                 },

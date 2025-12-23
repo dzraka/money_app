@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:money_app/data/db/transaction_dao.dart';
-import 'package:money_app/data/model/transaction.dart';
-import 'package:money_app/data/repository/money_repository.dart';
+import 'package:money_app/data/local/model/transaction.dart';
+import 'package:money_app/data/local/repository/money_repository.dart';
 
 class InsertPage extends StatefulWidget {
   const InsertPage({super.key});
@@ -64,6 +64,7 @@ class _InsertPageState extends State<InsertPage> {
     if (mounted) Navigator.of(context).pop(true);
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tambah Transaki')),
@@ -74,7 +75,7 @@ class _InsertPageState extends State<InsertPage> {
           child: ListView(
             children: [
               DropdownButtonFormField<String>(
-                value: _type,
+                initialValue: _type,
                 items: const [
                   DropdownMenuItem(value: 'income', child: Text('Income')),
                   DropdownMenuItem(value: 'expense', child: Text('Expense')),
@@ -116,8 +117,9 @@ class _InsertPageState extends State<InsertPage> {
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Masukkan nominal';
                   final n = double.tryParse(v);
-                  if (n == null || v.trim().isEmpty)
+                  if (n == null || v.trim().isEmpty) {
                     return 'Masukkan angka yang valid';
+                  }
                   if (n <= 0) return 'Nominal harus lebih besar dari 0';
                   return null;
                 },

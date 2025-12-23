@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:money_app/data/db/db_helper.dart';
-import 'package:money_app/data/model/transaction.dart';
+import 'package:money_app/data/local/db/db_helper.dart';
+import 'package:money_app/data/local/model/transaction.dart';
 
 class TransactionDao {
   final dbHelper = DbHelper();

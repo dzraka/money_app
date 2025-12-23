@@ -1,5 +1,5 @@
-import 'package:money_app/data/db/transaction_dao.dart';
-import 'package:money_app/data/model/transaction.dart';
+import 'package:money_app/data/local/db/transaction_dao.dart';
+import 'package:money_app/data/local/model/transaction.dart';
 
 class MoneyRepository {
   final moneyDao = TransactionDao();
